@@ -23,6 +23,7 @@ class impavel_kodix extends CModule
     public $MODULE_NAME;
     public $MODULE_DESCRIPTION;
     public $MODULE_CSS;
+    public $MODULE_GROUP_RIGHTS = "Y";
     
     public $PARTNER_NAME;
     public $PARTNER_URI;
@@ -41,6 +42,17 @@ class impavel_kodix extends CModule
 
         $this->PARTNER_NAME = Loc::getMessage("kodix_PARTNER_NAME");
         $this->PARTNER_URI = Loc::getMessage("kodix_PARTNER_URI");
+    }
+    
+    function GetModuleRightList()
+    {
+        return [
+            "reference_id" => ["R", "D"],
+            "reference" => [
+                '[R] ' . Loc::getMessage("kodix_MODULE_ACCESS_R"),
+                '[D] ' . Loc::getMessage("kodix_MODULE_ACCESS_D"),
+            ]
+        ];
     }
 
     function DoInstall()

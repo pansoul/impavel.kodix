@@ -14,6 +14,11 @@ class CarsDetail extends CBitrixComponent
         if (!Main\Loader::includeModule('impavel.kodix')) {
             throw new Main\LoaderException(Loc::getMessage('kodix_MODULE_NOT_INSTALLED'));
         }
+        global $APPLICATION;
+        if($APPLICATION->GetUserRight('impavel.kodix') <= 'D')
+        {
+            throw new Main\LoaderException(Loc::getMessage('kodix_MODULE_ACCESS_DENIED'));
+        }
     }
     
     public function onPrepareComponentParams($params)

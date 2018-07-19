@@ -22,6 +22,11 @@ class CarsApi extends CBitrixComponent
         if (!Main\Loader::includeModule('impavel.kodix')) {
             $this->showResponse(CARSAPI_STATUS_ERROR, 'The module impavel.kodix not installed.');            
         }
+        global $APPLICATION;
+        if($APPLICATION->GetUserRight('impavel.kodix') <= 'D')
+        {
+            $this->showResponse(CARSAPI_STATUS_ERROR, 'Access to module impavel.kodix denied.');            
+        }
     }
     
     protected function parseSefUrl()
@@ -81,7 +86,7 @@ class CarsApi extends CBitrixComponent
         
         $APPLICATION->RestartBuffer();
         header('Content-type: application/json');
-        echo Main\Web\Json::encode($response);
+        echo Main\Web\Json::encode($response, JSON_PRETTY_PRINT);
         exit;
     }
     
