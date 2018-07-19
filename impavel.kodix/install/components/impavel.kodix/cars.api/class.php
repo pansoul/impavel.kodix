@@ -70,7 +70,7 @@ class CarsApi extends CBitrixComponent
         $this->context = $context;
     }
     
-    protected function showResponse($code, $context)
+    protected function showResponse($code = null, $context = null)
     {
         global $APPLICATION;
         
